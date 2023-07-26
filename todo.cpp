@@ -22,6 +22,19 @@ void reboot(){
     cout << '.' << endl << endl;
     main();
 }
+void ask_reboot(){
+    cout << "Would you like to restart the program?(Y/N)  ";
+    char reb;
+    cin >> reb;
+    if(reb == 'y' || reb == 'Y'){
+        reboot();
+    }
+    
+    else{
+        // do nothing
+    }
+    
+}
 
 
 
@@ -73,7 +86,8 @@ int main(){
         
         string save;
         
-        cout << "Would you like to save your list?(y/n)  ";
+        cout << "Would you like to save your list?" << endl;
+        cout << "(Y)es,  (N)o,  (O)ptions:  ";
         cin >> save;
         
         if(save == "y" || save == "Y"){
@@ -94,18 +108,91 @@ int main(){
             }
         }
         
+        
+        else if(save == "O" || save == "o"){
+            cout << "Select the location of the file" << endl;
+            cout << "1) Downloads (MacOS)" << endl;
+            cout << "2) Desktop (MacOS) --Default" << endl;
+            cout << "3) Documents (MacOS)" << endl;
+            cout << "4) Linux options coming later" << endl;
+            cout << "(A)bort" << endl;
+            
+            
+            string so;
+            cout << "Location: ";
+            cin >> so;
+            if(so == "1"){
+                cout << "Saving to downloads..." << endl;
+                ofstream File("/Users/akhil/Downloads/todo_list.txt"); //open file
+                if(File.is_open()){
+                    File << "To-do list:" << endl;
+                    for(int x = 1; x <= todo.size(); x++){
+                        
+                        File << x << ") " << todo[x-1] << endl; //adds item to file
+                    }
+                    File.close(); //close file
+                    cout << "To-do list saved successfully!" << endl << endl;
+                }
+                
+                else{
+                    cout << "Error opening file to write!" << endl;
+                }
+                
+            }
+            
+          else if(so == "2"){
+                cout << "Saving to desktop..." << endl;
+                ofstream File("/Users/akhil/Desktop/todo_list.txt"); //open file
+                if(File.is_open()){
+                    File << "To-do list:" << endl;
+                    for(int x = 1; x <= todo.size(); x++){
+                        
+                        File << x << ") " << todo[x-1] << endl; //adds item to file
+                    }
+                    File.close(); //close file
+                    cout << "To-do list saved successfully!" << endl << endl;
+                }
+                
+                else{
+                    cout << "Error opening file to write!" << endl;
+                }
+                
+            }
+            
+            if(so == "3"){
+                cout << "Saving to documents..." << endl;
+                ofstream File("/Users/akhil/Documents/todo_list.txt"); //open file
+                if(File.is_open()){
+                    File << "To-do list:" << endl;
+                    for(int x = 1; x <= todo.size(); x++){
+                        
+                        File << x << ") " << todo[x-1] << endl; //adds item to file
+                    }
+                    File.close(); //close file
+                    cout << "To-do list saved successfully!" << endl << endl;
+                }
+                
+                else{
+                    cout << "Error opening file to write!" << endl;
+                }
+                
+            }
+            
+            if(so == "4"){
+                cout << "Saving on Linux filesystems coming soon..." << endl << endl;
+                
+                ask_reboot();
+            }
+            else{
+                ask_reboot();
+            }
+            
+            
+            
+        }
             
             else{
-                char restart;
-                cout << "Would you like to restart the application?(y/n)  ";
-                cin >> restart;
-                if(restart == 'y' || restart == 'Y'){
-                    
-                    reboot();
-                }
-                else{
-                    // do nothing
-                }
+                ask_reboot();
             }
             
         }
@@ -126,6 +213,12 @@ int main(){
         
     }
     
+    
+    
+    
+
+
+
     
     
     
